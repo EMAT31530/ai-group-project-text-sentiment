@@ -6,10 +6,10 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 import random
 
 #Open files using with statement
-with open('train_neg_full.txt') as f:
+with open('Datasets/train_neg_full.txt') as f:
     negative = f.readlines()
 
-with open('train_pos_full.txt') as f:
+with open('Datasets/train_pos_full.txt') as f:
     positive = f.readlines()
 
 #Sampling a random 10000 lines from files so program runs quicker while testing
