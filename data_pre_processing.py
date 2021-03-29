@@ -13,33 +13,19 @@ $ pip install pandas
 import tweepy
 import string
 import re
-import random
-import operator
 import nltk
 import contractions
-import scipy.sparse
-from collections import defaultdict
-from gensim import matutils, models
-from gensim.models import CoherenceModel
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn_crfsuite import CRF, metrics
+import pandas as pd
+from nltk.corpus import twitter_samples
+from nltk.corpus import stopwords, wordnet
 from nltk import word_tokenize, pos_tag
 from nltk.stem.wordnet import WordNetLemmatizer
-from nltk import SnowballStemmer
-from nltk.tag.util import untag
-from nltk.corpus import stopwords, wordnet
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('treebank')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 nltk.download('twitter_samples')
-from pprint import pprint
-import pandas as pd
-import gensim.corpora as corpora
-import matplotlib.pyplot as plt
-
-from nltk.corpus import twitter_samples
 
 positive_tweets = twitter_samples.strings('positive_tweets.json')
 negative_tweets = twitter_samples.strings('negative_tweets.json')
