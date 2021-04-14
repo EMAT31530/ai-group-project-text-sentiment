@@ -1,1 +1,1 @@
-Download other csv and txt files to run code. Currently implements Latent Dirichlet Allocation, uses a simple Markov model to generate tweets, shows number of topics talked about by a number of British MPs. Can adjust the code in the direction of the project, but the base exists, implements tweet scraping using tweepy, and we create functions to clean the data.
+
