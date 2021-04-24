@@ -4,7 +4,7 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 
 data = pd.DataFrame()
-data = pd.read_csv('Datasets/TweetsTrain.csv', encoding = 'utf-8')
+data = pd.read_csv('Datasets/PracTrain.csv', encoding = 'utf-8')
 data.head()
 
 #create empty list
@@ -42,5 +42,5 @@ EmbeddingDim = 100
 model = Word2Vec(sentences = tweet_data_list, size = EmbeddingDim, workers = 4, min_count = 1)
 
 #Save word embedding model
-model_file = 'Embeddings/word2vec_embedding.txt'
+model_file = 'Embeddings/Pracembedding.txt'
 model.wv.save_word2vec_format(model_file, binary=False)
