@@ -15,21 +15,21 @@ This made it easier to work with, when cleaning the data and when creating word 
 
 #Positive tweets
 headers = ['Tweet','Sentiment']
-df = pd.read_fwf('Datasets/PosTweets.txt', header = None)
+df = pd.read_fwf('Datasets/PosTweetsSample.txt', header = None)
 df['new_column'] = '1'
-df.to_csv('Datasets/PosTweets.csv', header = headers, index = False)
+df.to_csv('Datasets/PosTweetsSample.csv', header = headers, index = False)
 
 #Negative tweets
-df = pd.read_fwf('Datasets/NegTweets.txt', header = None)
+df = pd.read_fwf('Datasets/NegTweetsSample.txt', header = None)
 df['new_column'] = '-1'
-df.to_csv('Datasets/NegTweets.csv', header = None, index = False)
+df.to_csv('Datasets/NegTweetsSample.csv', header = None, index = False)
 
 
 ############### Combining Both Files Together ###############
 
-PosReader = csv.reader(open("Datasets/PosTweets.csv"))
-NegReader = csv.reader(open("Datasets/NegTweets.csv"))
-f = open("Datasets/Tweets.csv", "w")
+PosReader = csv.reader(open("Datasets/PosTweetsSample.csv"))
+NegReader = csv.reader(open("Datasets/NegTweetsSample.csv"))
+f = open("Datasets/TweetsSample.csv", "w")
 writer = csv.writer(f)
 
 for row in PosReader:
@@ -42,7 +42,7 @@ f.close()
 
 # Loading the data into a data frame
 data = pd.DataFrame()
-data = pd.read_csv('Datasets/Tweets.csv', encoding = 'utf-8')
+data = pd.read_csv('Datasets/TweetsSample.csv', encoding = 'utf-8')
 data.head()
 
 
@@ -50,7 +50,7 @@ data.head()
 train,test = train_test_split(data, test_size=0.30, random_state=0)
 
 #save the data
-train.to_csv('Datasets/Train/Train.csv',index=False)
-test.to_csv('Datasets/Test/Test.csv',index=False)
+train.to_csv('Datasets/Train/TrainSample.csv',index=False)
+test.to_csv('Datasets/Test/TestSample.csv',index=False)
 
 
