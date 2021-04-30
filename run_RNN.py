@@ -10,15 +10,16 @@ from TextToTensor import TextToTensor
 from RNN_model import * 
 from embeddings_matrix import *
 
+data1 = pd.DataFrame()
+data1 = pd.read_csv('Datasets/Train/TrainSample.csv', encoding = 'utf-8')
 
-embed_path = 'Embeddings/practise_embedding.txt'
+data2 = pd.DataFrame()
+data2 = pd.read_csv('Datasets/Test/TestSample.csv', encoding = 'utf-8')
+
+X_train, X_validation, y_train, y_validation = train_test_split(data1.Tweet, data1.Sentiment, test_size=0.35, random_state=4)
+
+embed_path = 'Embeddings/prac_embedding.txt'
 embed_dim = 100 # must be same size as the embedding dimension 
-
-data = pd.DataFrame()
-data = pd.read_csv('Datasets/Smaller Datasets/Train.csv', encoding = 'utf-8')
-data.head()
-
-X_train, X_test, y_train, y_test = train_test_split(data.Tweet, data.Sentiment, test_size=0.35, random_state=4)
 
 # Tokenizing the text
 tokenizer = Tokenizer()
@@ -43,28 +44,16 @@ model.add(Embedding(input_dim=num_unique_words+1, output_dim=embed_dim, input_le
 model.compile('rmsprop', 'mse')
 output_array = model.predict(X_train_NN)[0]
 
+results = Pipeline( X_train=X_train, Y_train=y_train, embed_path=embed_path, embed_dim=embed_dim, X_test=X_validation, Y_test= y_validation, epochs=10, batch_size=256)
+
+#save the model weights
+results.model.save("model.h5")
 
 
-results = Pipeline( X_train=X_train, Y_train=y_train, embed_path=embed_path, embed_dim=embed_dim,
-X_test=X_test, Y_test= y_test, epochs=1, batch_size=256)
+# initialising the test data
+X_test = data2.loc[:,'Tweet']
+y_test = data2.loc[:,'Sentiment']
 
-
-'''good = ['Fire in Vilnius! Where is the fire brigade??? #emergency']
-
-TextToTensor_instance = TextToTensor(
-tokenizer=results.tokenizer,
-max_len=20
-)
-# Converting to tensors
-good_nn = TextToTensor_instance.string_to_tensor(good)
-
-# Forecasting
-p_good = results.model.predict(good_nn)[0][0]'''
-
-
-
-
-
-
-
+X_test_nn = TextToTensor_instance.string_to_tensor(X_test)
+predictions = results.model.predict_classes(X_test_nn)
 

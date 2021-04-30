@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, Dense, Embedding, concatenate, Dropout, concatenate
 from tensorflow.keras.layers import Bidirectional
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.text import Tokenizer
@@ -26,7 +26,7 @@ class RNN():
         x = Dense(1, activation="sigmoid")(x)    
         model = Model(inputs=inp1, outputs=x)
 
-        model.compile(loss = 'binary_crossentropy', optimizer = 'adam')
+        model.compile(loss = 'binary_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
         self.model = model
 
 
@@ -58,7 +58,7 @@ class Pipeline:
 
         # Creating the model
         rnn = RNN(embedding_matrix=embedding_matrix, embedding_dim=embed_dim, max_len=max_len)
-        rnn.model.fit(X_train,Y_train, batch_size=batch_size, epochs=epochs)
+        rnn.model.fit(X_train,Y_train, batch_size=batch_size, epochs=epochs, validation_data = (X_test, Y_test))
 
         self.model = rnn.model
 
@@ -73,4 +73,4 @@ class Pipeline:
             # If true labels are provided we calculate the accuracy of the model
             if len(Y_test)>0:
                 self.acc = accuracy_score(Y_test, [1 if x > 0.5 else 0 for x in yhat])
-                #self.f1 = f1_score(Y_test, [1 if x > 0.5 else 0 for x in yhat])
+                self.f1 = f1_score(Y_test, [1 if x > 0.5 else 0 for x in yhat])
