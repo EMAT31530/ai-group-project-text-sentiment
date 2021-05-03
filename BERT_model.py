@@ -11,7 +11,7 @@ from transformers import AutoModel, BertTokenizerFast, AdamW
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from matplotlib import pyplot as plt
 
-cleanedDf = pd.read_csv('cleaned_tweets.csv', usecols=['Sentiment', 'SpellCheckTweets'])
+cleanedDf = pd.read_csv('dataset_full_cleaned.csv', usecols=['Sentiment', 'SpellCheckTweets'])
 print(cleanedDf['Sentiment'].value_counts(normalize = True))
 cleanedDf = cleanedDf.dropna()
 
