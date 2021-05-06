@@ -15,6 +15,7 @@ import string
 
 import re
 import nltk
+import itertools
 import pickle
 import contractions
 import random
@@ -25,6 +26,7 @@ from nltk.corpus import stopwords, wordnet
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from textblob import TextBlob
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
@@ -33,22 +35,18 @@ nltk.download('punkt')
 nltk.download('treebank')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
-nltk.download('twitter_samples')
 
-positive_tweets = twitter_samples.strings('positive_tweets.json')
-#print(positive_tweets)
-negative_tweets = twitter_samples.strings('negative_tweets.json')
-text = twitter_samples.strings('tweets.20150430-223406.json')
 
 # dictionary_slang.csv must be in the same folder as the .py file
 slang_dict_df = pd.read_csv('dictionary_slang.csv', usecols=['Abbrv', 'Full'])
 slang_dict = slang_dict_df.set_index('Abbrv')['Full'].to_dict()
 
-def data_clean_function(sentimentTweetList):
+def data_clean_function(csvfile):
     # FullTrain.csv must be in the same folder as the .py file
-    tweetsDataframe = pd.DataFrame(sentimentTweetList,columns=['Tweet'])
-    tweetsDataframe = tweetsDataframe[:100]
-        #pd.read_csv('FullTrain.csv', nrows=5)
+    tweetsDataframe = pd.read_csv(csvfile)
+    tweetsDataframe = tweetsDataframe.sample(frac=1).reset_index(drop=True)
+
+    #tweetsDataframe = tweetsDataframe[:50]
 
     # Uncomment the lines below to get the dataframe showing the tweets obtained from the csv file.
     # print('''
@@ -152,7 +150,7 @@ def data_clean_function(sentimentTweetList):
     #print(tweetsDataframe)
 
 
-    ###################### Main Execution #########################################################
+    ###################### Main Execution ######################################################
     # Initialise a number of topics list & a twitter handle list. Users may input
     # custom twitter handles in the file twitter_handles.txt which will be read into the program.
 
@@ -166,51 +164,36 @@ def data_clean_function(sentimentTweetList):
     tweetsDataframe['First_Clean_Tweets'] = tweetsDataframe['Lemmatise_Tweets'].apply(text_cleaner)
     tweetsDataframe['Stopwords_Removed_Tweets'] = tweetsDataframe['First_Clean_Tweets'].apply(remove_stopwords)
     tweetsDataframe['SpellCheckTweets'] = spellcheck(tweetsDataframe)
-
+    sentimentList = tweetsDataframe['Sentiment'].tolist()
+    tweetsDataframe.to_csv('cleaned_tweets.csv')
     newlist = []
 
-    for i in tweetsDataframe['SpellCheckTweets'].tolist():
+    for (i,j) in zip(tweetsDataframe['SpellCheckTweets'].tolist(),sentimentList):
         i = str(i)
-        newlist.append(i)
-    tokenlist = []
-    tokenized_sents = [word_tokenize(i) for i in newlist]
-    for i in tokenized_sents:
-        tokenlist.append(i)
+        newlist.append((i,j))
+    tokenListPos = []
+    tokenListNeg = []
+    print(newlist)
+    tokenized_sents = [word_tokenize(i) for (i,j) in newlist]
+    tokenized_sents_with_sentiment = [(word_tokenize(i),j) for (i,j) in newlist]
+    for (i,j) in tokenized_sents_with_sentiment:
+        if j == 1:
+            tokenListPos.append(i)
+        elif j == 0:
+            tokenListNeg.append(i)
 
-    resultantList = sum(tokenlist, [])
-    return resultantList
+    #print(tokenized_sents)
+    #for i in tokenized_sents:
+    #    tokenListPos.append(i)
 
-def get_tweets_for_model(cleaned_tokens_list):
-    yield dict([token, True] for token in cleaned_tokens_list)
+    resultantPosList = sum(tokenListPos, [])
+    posTaggedList = [(resultantPosList, 'pos')]
+    resultantNegList = sum(tokenListNeg, [])
+    negTaggedList = [(resultantNegList, 'neg')]
+    wholeDoc = [(resultantPosList, 'pos'), (resultantNegList, 'neg')]
+    return tokenized_sents, wholeDoc
 
+def get_tweets_for_model(cleaned_tokens_list, tag):
+    yield [(token, tag) for token in cleaned_tokens_list]
 
-resultantPositiveList = data_clean_function(positive_tweets)
-resultantNegativeList = data_clean_function(negative_tweets)
-
-
-positiveDict = get_tweets_for_model(resultantPositiveList)
-negativeDict = get_tweets_for_model(resultantNegativeList)
-
-
-print(positiveDict)
-print(negativeDict)
-
-positive_dataset = [(tweet_dict, 'Positive') for tweet_dict in positiveDict]
-negative_dataset = [(tweet_dict, 'Negative') for tweet_dict in negativeDict]
-
-print(positive_dataset)
-print(negative_dataset)
-
-dataset = positive_dataset + negative_dataset
-random.shuffle(dataset)
-train, test = train_test_split(dataset, test_size=0.3)
-
-#print(trainData[0][0])
-## Training a Naive Bayes Classifier after splitting the dataset 70-30 for train and test. Future work will add SVMs and may look at deep 
-## learning methods like CNN for sentiment analysis
-
-classifier = NaiveBayesClassifier.train(train)
-filename = 'firstmodel.pkl'
-pickle.dump(classifier, open(filename, 'wb'))
-infile = open('firstmodel.pkl','rb')
-model = pickle.load(infile)
+tokenized_sentences_list, document_with_sentiment_attached = data_clean_function('FullTrain.csv')
