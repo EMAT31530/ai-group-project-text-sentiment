@@ -39,10 +39,10 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Authors
 
-* **Victoria Adcock** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Vedang Joshi** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Stefan Johansen** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Neave Wray** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Victoria Adcock** - [GitHub Page](https://github.com/victoriaea97)
+* **Vedang Joshi** - [GitHub Page](https://github.com/vedang-joshi)
+* **Stefan Johansen** - [GitHub Page](https://github.com/PurpleBooth)
+* **Neave Wray** - [GitHub Page](https://github.com/Neavewray1)
 
 ## License
 
