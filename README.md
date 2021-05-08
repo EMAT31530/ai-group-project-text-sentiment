@@ -50,4 +50,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* A special thanks to Ryan McConville for guiding us through this project.
+* A special thanks to [Ryan McConville](https://github.com/rymc) for guiding us through this project.
