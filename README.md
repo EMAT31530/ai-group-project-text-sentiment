@@ -19,6 +19,7 @@ pip install keras
 ```
 
 ### Results
+For the BERT model, we get the following results:
 ![BERT results](confusion_bert.jpg)
 
 
