@@ -19,7 +19,7 @@ pip install keras
 ```
 
 ### Results
-![BERT results](https://drive.google.com/file/d/13IPnux_zZUboXRgOoCL75vopx7MZvCNK/view?usp=sharing)
+![BERT results](confusion_bert.jpg)
 
 
 ## Authors
