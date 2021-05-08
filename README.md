@@ -1,6 +1,6 @@
-# Project Title
+# Comparing Machine Learning models for Tweet Sentiment Analysis
 
-One Paragraph of project description goes here
+With  the  advent  of  internet  and  more  pertinently  with  the ubiquity of portable  devices,  people find it easier to express their opinions online than ever before. With this explosion of knowledge comes the need to efficiently sort through the sentiments expressed. Due to these views being open source, companies use various methods to classify and evaluate sentiments. This repository contains a suite of machine learning models, classifiers and decision trees on tweet sentiment classification, and a comprehensive evaluation of these methods may be found in our report.
 
 ## Getting Started
 
@@ -8,10 +8,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Install the following dependencies to your virtul environment:
 
 ```
-Give examples
+pip install nltk
+pip install 'transformers==3'
+pip install pytorch
+pip install tensorflow
+pip install keras
 ```
 
 ### Installing
@@ -32,49 +36,13 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Victoria Adcock** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Vedang Joshi** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Stefan Johansen** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Neave Wray** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 ## License
 
@@ -82,6 +50,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* A special thanks to Ryan McConville for guiding us through this project.
