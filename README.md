@@ -27,7 +27,7 @@ For the BERT model, we get the following results:
 
 * **Victoria Adcock** - [GitHub Page](https://github.com/victoriaea97)
 * **Vedang Joshi** - [GitHub Page](https://github.com/vedang-joshi)
-* **Stefan Johansen** - [GitHub Page](https://github.com/PurpleBooth)
+* **Stefan Johansen** - [GitHub Page](https://github.com/stefanjohansen)
 * **Neave Wray** - [GitHub Page](https://github.com/Neavewray1)
 
 ## License
