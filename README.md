@@ -2,9 +2,6 @@
 
 With  the  advent  of  internet  and  more  pertinently  with  the ubiquity of portable  devices,  people find it easier to express their opinions online than ever before. With this explosion of knowledge comes the need to efficiently sort through the sentiments expressed. Due to these views being open source, companies use various methods to classify and evaluate sentiments. This repository contains a suite of machine learning models, classifiers and decision trees on tweet sentiment classification, and a comprehensive evaluation of these methods may be found in our report.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
