@@ -52,7 +52,7 @@ class Pipeline:
 
         # Creating the model
         rnn = RNN(embedding_matrix=embedding_matrix, embedding_dim=embed_dim, max_len=max_len)
-        rnn.model.fit(X_train,Y_train, batch_size=batch_size, epochs=epochs)
+        rnn.model.fit(X_train,Y_train, batch_size=batch_size, epochs=epochs, verbose = 2)
 
         self.model = rnn.model
 
