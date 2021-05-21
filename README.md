@@ -16,7 +16,7 @@ pip install keras
 ```
 
 ### Results
-For the BERT model, we get the following results:
+View all the confusion matrices obtained from our work here:
 ![BERT results](confusion_bert.jpg)
 
 
