@@ -17,7 +17,12 @@ pip install keras
 
 ### Results
 View all the confusion matrices obtained from our work here:
-![BERT results](confusion_bert.jpg)
+
+[Logistic_regression_confusion_matrix.pdf](https://github.com/EMAT31530/ai-group-project-text-sentiment/files/6522050/Logistic_regression_confusion_matrix.pdf)
+[Decision_Tree_confusion_matrix.pdf](https://github.com/EMAT31530/ai-group-project-text-sentiment/files/6522051/Decision_Tree_confusion_matrix.pdf)
+[Linear_SVC_confusion_matrix.pdf](https://github.com/EMAT31530/ai-group-project-text-sentiment/files/6522055/Linear_SVC_confusion_matrix.pdf)
+[CNN_confusion_matrix.pdf](https://github.com/EMAT31530/ai-group-project-text-sentiment/files/6522061/CNN_confusion_matrix.pdf)
+[Bert_confusion_matrix.pdf](https://github.com/EMAT31530/ai-group-project-text-sentiment/files/6522053/Bert_confusion_matrix.pdf)
 
 
 ## Authors
